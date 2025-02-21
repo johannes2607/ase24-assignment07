@@ -16,11 +16,10 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} f
   styleUrl: './task-table.component.css'
 })
 export class TaskTableComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'description', 'status', 'assignee'];
   dataSource = new MatTableDataSource<TaskDto>([]);
-  todo = ['Get to work', 'Pick up groceries', 'Go home'];
-  doing = ['Fall asleep'];
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  todo: TaskDto[] = [];
+  doing: TaskDto[] = [];
+  done: TaskDto[] = [];
 
   constructor(private tasksService: TasksService) {
     this.tasksService = tasksService;
@@ -29,10 +28,13 @@ export class TaskTableComponent implements OnInit {
   ngOnInit() {
     this.tasksService.getTasks().then(tasks => {
       this.dataSource.data = tasks;
+      this.todo = tasks.filter(task => task.status === 'TODO');
+      this.doing = tasks.filter(task => task.status === 'DOING');
+      this.done = tasks.filter(task => task.status === 'DONE');
     });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<TaskDto[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -42,6 +44,20 @@ export class TaskTableComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
+
+      let movedTask = event.container.data[event.currentIndex];
+
+      if (event.container.id === 'todoList') {
+        movedTask.status = 'TODO';
+      } else if (event.container.id === 'doingList') {
+        movedTask.status = 'DOING';
+      } else if (event.container.id === 'doneList') {
+        movedTask.status = 'DONE';
+      }
+
+      //this.tasksService.updateTask(movedTask).then(() => {
+      //  console.log('Task updated successfully');
+      //});
     }
   }
 }
