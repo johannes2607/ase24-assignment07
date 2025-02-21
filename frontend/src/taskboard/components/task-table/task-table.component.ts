@@ -18,7 +18,8 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} f
 export class TaskTableComponent implements OnInit {
   displayedColumns: string[] = ['title', 'description', 'status', 'assignee'];
   dataSource = new MatTableDataSource<TaskDto>([]);
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo = ['Get to work', 'Pick up groceries', 'Go home'];
+  doing = ['Fall asleep'];
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   constructor(private tasksService: TasksService) {

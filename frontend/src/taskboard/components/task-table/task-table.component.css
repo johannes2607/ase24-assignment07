@@ -3,8 +3,8 @@ table {
 }
 
 .example-list {
-  width: 500px;
   max-width: 100%;
+  margin: 5%;
   border: solid 1px #ccc;
   min-height: 60px;
   display: block;
@@ -52,12 +52,12 @@ table {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-container {
+.container {
   display: inline-block;
   vertical-align: top;
   width: 45%;
 }
 
-.example-container h2 {
+.container h2 {
   text-align: center;
 }
