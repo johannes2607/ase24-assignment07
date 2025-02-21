@@ -31,12 +31,7 @@ public class TestFixtures {
             new Task("Task 12", "Description 12"),
             new Task("Task 13", "Description 13"),
             new Task("Task 14", "Description 14"),
-            new Task("Task 15", "Description 15"),
-            new Task("Task 16", "Description 16"),
-            new Task("Task 17", "Description 17"),
-            new Task("Task 18", "Description 18"),
-            new Task("Task 19", "Description 19"),
-            new Task("Task 20", "Description 20")
+            new Task("Task 15", "Description 15")
     );
 
     public static List<User> getUsers() {
