@@ -22,4 +22,9 @@ export class TasksService {
     const url = this.baseUrl;
     return firstValueFrom(this.httpClient.get<Array<TaskDto>>(url));
   }
+
+  public updateTask(taskId: string | undefined, taskDto: TaskDto): Promise<TaskDto> {
+    const url = this.baseUrl + "/" + taskId;
+    return firstValueFrom(this.httpClient.put<TaskDto>(url, taskDto));
+  }
 }

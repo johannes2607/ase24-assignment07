@@ -55,9 +55,9 @@ export class TaskTableComponent implements OnInit {
         movedTask.status = 'DONE';
       }
 
-      //this.tasksService.updateTask(movedTask).then(() => {
-      //  console.log('Task updated successfully');
-      //});
+      this.tasksService.updateTask(movedTask.id, movedTask).then(() => {
+        console.log('Task updated successfully');
+      });
     }
   }
 }
