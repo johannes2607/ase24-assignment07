@@ -1,7 +1,7 @@
 <div class="container">
   <h2>TODO</h2>
   <div id="todoList" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doingList, doneList]"
-    class="task-list" (cdkDropListDropped)="drop($event)">
+    class="task-list" (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true" style="height: 100%">
     @for (item of todo; track item) {
       <div class="task-box" cdkDrag>
         <p class="title">{{ item.title }}</p>
@@ -15,7 +15,7 @@
 <div class="container">
   <h2>DOING</h2>
   <div id="doingList" cdkDropList #doingList="cdkDropList" [cdkDropListData]="doing" [cdkDropListConnectedTo]="[todoList, doneList]"
-    class="task-list" (cdkDropListDropped)="drop($event)">
+    class="task-list" (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
     @for (item of doing; track item) {
       <div class="task-box" cdkDrag>
         <p class="title">{{ item.title }}</p>
@@ -29,7 +29,7 @@
 <div class="container">
   <h2>DONE</h2>
   <div id="doneList" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList, doingList]"
-    class="task-list" (cdkDropListDropped)="drop($event)">
+    class="task-list" (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
     @for (item of done; track item) {
       <div class="task-box" cdkDrag>
         <p class="title">{{ item.title }}</p>
