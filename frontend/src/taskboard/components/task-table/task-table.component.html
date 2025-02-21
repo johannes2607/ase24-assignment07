@@ -4,7 +4,7 @@
     cdkDropList
     #todoList="cdkDropList"
     [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListConnectedTo]="[doingList, doneList]"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     @for (item of todo; track item) {
@@ -17,9 +17,9 @@
   <h2>DOING</h2>
   <div
     cdkDropList
-    #todoList="cdkDropList"
+    #doingList="cdkDropList"
     [cdkDropListData]="doing"
-    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListConnectedTo]="[todoList, doneList]"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     @for (item of doing; track item) {
@@ -34,7 +34,7 @@
     cdkDropList
     #doneList="cdkDropList"
     [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListConnectedTo]="[todoList, doingList]"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     @for (item of done; track item) {
