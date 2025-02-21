@@ -52,3 +52,12 @@ table {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.example-container {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+}
+
+.example-container h2 {
+  text-align: center;
+}

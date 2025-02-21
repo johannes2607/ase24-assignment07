@@ -4,7 +4,7 @@ import {
 } from "@angular/material/table";
 import {TaskDto} from '../../client/model/taskDto';
 import {TasksService} from '../../services/tasks.service';
-import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'taskboard-task-table',
@@ -18,18 +18,8 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/d
 export class TaskTableComponent implements OnInit {
   displayedColumns: string[] = ['title', 'description', 'status', 'assignee'];
   dataSource = new MatTableDataSource<TaskDto>([]);
-
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi',
-    'Episode IX – The Rise of Skywalker',
-  ];
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   constructor(private tasksService: TasksService) {
     this.tasksService = tasksService;
@@ -42,6 +32,15 @@ export class TaskTableComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }
